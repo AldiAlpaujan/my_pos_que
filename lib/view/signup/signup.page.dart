@@ -1,17 +1,17 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:my_pos_que/helper/assets.dart';
 import 'package:my_pos_que/theme/theme.dart';
-import 'package:my_pos_que/widget/app_auth_text_field.dart';
+import 'package:my_pos_que/view/signup/signup.controller.dart';
 import 'package:my_pos_que/widget/app_button.dart';
 
-import 'login.controller.dart';
+import '../../helper/assets.dart';
+import '../../widget/app_auth_text_field.dart';
 
-class LoginPage extends GetView<LoginController> {
-  const LoginPage({super.key});
+class SignUpPage extends GetView<SignUpController> {
+  const SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,19 +27,19 @@ class LoginPage extends GetView<LoginController> {
               children: [
                 Center(
                   child: Container(
-                    width: 230,
-                    height: 230,
-                    margin: const EdgeInsets.only(bottom: 20, top: padding),
+                    width: 200,
+                    height: 200,
+                    margin: const EdgeInsets.only(bottom: 8, top: padding),
                     color: Colors.red.withOpacity(.0),
                     child: SvgPicture.asset(
-                      loginIllus,
+                      signupIllus,
                     ),
                   ),
                 ),
                 const Padding(
                   padding: EdgeInsets.only(bottom: 4),
                   child: Text(
-                    "Login",
+                    "Sign up",
                     style: TextStyle(
                       fontSize: 28,
                       color: AppTheme.bodyColor,
@@ -48,9 +48,9 @@ class LoginPage extends GetView<LoginController> {
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.only(bottom: 16.0),
+                  padding: EdgeInsets.only(bottom: 12.0),
                   child: Text(
-                    "Masukkan email dan password Anda untuk melanjutkan",
+                    "Mari bergabung besama kami!",
                     style: TextStyle(
                       fontSize: 16,
                       color: AppTheme.capColor,
@@ -65,7 +65,14 @@ class LoginPage extends GetView<LoginController> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 18.0),
+                  padding: const EdgeInsets.only(bottom: 12.0),
+                  child: AppAuthTextField(
+                    hintText: "Masukkan nama lengkap",
+                    icon: MdiIcons.accountOutline,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 12.0),
                   child: AppAuthTextField(
                     hintText: "Masukkan password",
                     icon: MdiIcons.lockOutline,
@@ -73,21 +80,22 @@ class LoginPage extends GetView<LoginController> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0),
-                  child: forgotPassword(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: Obx(
-                    () => AppButton(
-                      label: "Login",
-                      width: double.infinity,
-                      isLoading: controller.isLoading.value,
-                      onPressed: controller.login,
-                    ),
+                  padding: const EdgeInsets.only(bottom: 25.0),
+                  child: AppAuthTextField(
+                    hintText: "Masukkan konfirmasi password",
+                    icon: MdiIcons.lockAlertOutline,
+                    obscureText: true,
                   ),
                 ),
-                signUp(),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 14.0),
+                  child: AppButton(
+                    label: "Continue",
+                    width: double.infinity,
+                    onPressed: () {},
+                  ),
+                ),
+                login(),
               ],
             ),
           ),
@@ -96,34 +104,16 @@ class LoginPage extends GetView<LoginController> {
     );
   }
 
-  Widget forgotPassword() => Align(
-        alignment: Alignment.centerRight,
-        child: GestureDetector(
-          onTap: controller.forgotPw,
-          child: const SizedBox(
-            height: 28,
-            child: Text(
-              "Lupa Password?",
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                color: AppTheme.primaryColor,
-              ),
-            ),
-          ),
-        ),
-      );
-
-  Widget signUp() => Align(
+  Widget login() => Align(
         alignment: Alignment.center,
         child: Text.rich(
           TextSpan(
-            text: "Belum Punya Akun?  ",
+            text: "Sudah Punya Akun?  ",
             style: const TextStyle(color: AppTheme.capColor),
             children: [
               TextSpan(
-                text: "Daftar Sekarang!",
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () => controller.signUp(),
+                text: "Login!",
+                recognizer: TapGestureRecognizer()..onTap = () => Get.back(),
                 style: const TextStyle(
                   color: AppTheme.primaryColor,
                   fontWeight: FontWeight.w700,

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:my_pos_que/routes/app_pages.dart';
 
 class LoginController extends GetxController {
   final emailC = TextEditingController();
@@ -9,10 +10,11 @@ class LoginController extends GetxController {
 
   login() async {
     isLoading.value = true;
-    await Future.delayed(Duration(milliseconds: 2000));
+    await Future.delayed(const Duration(milliseconds: 2000));
     isLoading.value = false;
   }
 
   forgotPw() {}
-  signUp() {}
+
+  signUp() => Get.toNamed(Routes.signup);
 }
