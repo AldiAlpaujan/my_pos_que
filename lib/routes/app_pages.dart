@@ -15,6 +15,7 @@ abstract class AppPages {
       name: Routes.login,
       page: () => const LoginPage(),
       binding: BindingsBuilder.put(() => LoginController()),
+      transition: _transition,
     ),
   ];
 }
