@@ -117,7 +117,7 @@ class LoginPage extends GetView<LoginController> {
         alignment: Alignment.center,
         child: Text.rich(
           TextSpan(
-            text: "Belum Punya Akun?  ",
+            text: "Belum punya akun ?  ",
             style: const TextStyle(color: AppTheme.capColor),
             children: [
               TextSpan(

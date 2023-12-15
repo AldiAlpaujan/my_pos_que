@@ -108,11 +108,11 @@ class SignUpPage extends GetView<SignUpController> {
         alignment: Alignment.center,
         child: Text.rich(
           TextSpan(
-            text: "Sudah Punya Akun?  ",
+            text: "Sudah punya akun ?  ",
             style: const TextStyle(color: AppTheme.capColor),
             children: [
               TextSpan(
-                text: "Login!",
+                text: "Login",
                 recognizer: TapGestureRecognizer()..onTap = () => Get.back(),
                 style: const TextStyle(
                   color: AppTheme.primaryColor,
