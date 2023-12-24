@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:my_pos_que/helper/assets.dart';
+import 'package:my_pos_que/helper/validator.dart';
 import 'package:my_pos_que/theme/theme.dart';
 import 'package:my_pos_que/widget/app_auth_text_field.dart';
 import 'package:my_pos_que/widget/app_button.dart';
@@ -22,73 +23,81 @@ class LoginPage extends GetView<LoginController> {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: padding),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Container(
-                    width: 230,
-                    height: 230,
-                    margin: const EdgeInsets.only(bottom: 20, top: padding),
-                    color: Colors.red.withOpacity(.0),
-                    child: SvgPicture.asset(
-                      loginIllus,
+            child: Form(
+              key: controller.formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Container(
+                      width: 230,
+                      height: 230,
+                      margin: const EdgeInsets.only(bottom: 20, top: padding),
+                      color: Colors.red.withOpacity(.0),
+                      child: SvgPicture.asset(
+                        loginIllus,
+                      ),
                     ),
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 4),
-                  child: Text(
-                    "Login",
-                    style: TextStyle(
-                      fontSize: 28,
-                      color: AppTheme.bodyColor,
-                      fontWeight: FontWeight.w700,
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 4),
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: AppTheme.bodyColor,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 16.0),
-                  child: Text(
-                    "Masukkan email dan password Anda untuk melanjutkan",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: AppTheme.capColor,
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 16.0),
+                    child: Text(
+                      "Masukkan email dan password Anda untuk melanjutkan",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: AppTheme.capColor,
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 12.0),
-                  child: AppAuthTextField(
-                    hintText: "Masukkan email",
-                    icon: MdiIcons.at,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 18.0),
-                  child: AppAuthTextField(
-                    hintText: "Masukkan password",
-                    icon: MdiIcons.lockOutline,
-                    obscureText: true,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0),
-                  child: forgotPassword(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: Obx(
-                    () => AppButton(
-                      label: "Login",
-                      width: double.infinity,
-                      isLoading: controller.isLoading.value,
-                      onPressed: controller.login,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 12.0),
+                    child: AppAuthTextField(
+                      hintText: "Masukkan email",
+                      icon: MdiIcons.at,
+                      controller: controller.emailC,
+                      validator: (v) => emailValidator(v!),
                     ),
                   ),
-                ),
-                signUp(),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 18.0),
+                    child: AppAuthTextField(
+                      hintText: "Masukkan password",
+                      icon: MdiIcons.lockOutline,
+                      controller: controller.passwordC,
+                      obscureText: true,
+                      validator: (v) => pwValidator(v!),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: forgotPassword(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20.0),
+                    child: Obx(
+                      () => AppButton(
+                        label: "Login",
+                        width: double.infinity,
+                        isLoading: controller.isLoading.value,
+                        onPressed: controller.login,
+                      ),
+                    ),
+                  ),
+                  signUp(),
+                  const SizedBox(height: padding),
+                ],
+              ),
             ),
           ),
         ),

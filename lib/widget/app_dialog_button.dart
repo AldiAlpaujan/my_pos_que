@@ -18,7 +18,7 @@ class AppDialogButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 8),
+        padding: const EdgeInsets.fromLTRB(28, 6, 28, 10),
         decoration: BoxDecoration(
           color: colorBtn,
           borderRadius: BorderRadius.circular(50),

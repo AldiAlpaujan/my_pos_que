@@ -13,11 +13,22 @@ class SignUpController extends GetxController {
   register() async {
     if (formKey.currentState!.validate()) {
       isLoading.value = true;
-      await AuthService.register(
+      var success = await AuthService.register(
         emailC.text,
         passwordC.text,
       );
       isLoading.value = false;
+      if (success) {
+        _clearForm();
+        Get.back();
+      }
     }
+  }
+
+  _clearForm() {
+    emailC.clear();
+    nameC.clear();
+    passwordC.clear();
+    confirmC.clear();
   }
 }
