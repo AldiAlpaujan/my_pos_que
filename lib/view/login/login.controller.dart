@@ -11,6 +11,7 @@ class LoginController extends GetxController {
   login() async {
     isLoading.value = true;
     await Future.delayed(const Duration(milliseconds: 2000));
+    Get.toNamed(Routes.home);
     isLoading.value = false;
   }
 

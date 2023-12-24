@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "739890274129",
+    "project_id": "pos-application-b0d83",
+    "storage_bucket": "pos-application-b0d83.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739890274129:android:8821c2f3eb960e0a64fd70",
+        "android_client_info": {
+          "package_name": "com.aldi.my_pos_que"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5zMGOCO6tk2JPlkvt0sFC6m9gkwXE8og"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
