@@ -7,6 +7,7 @@ class AppAuthTextField extends StatefulWidget {
   final String hintText;
   final IconData icon;
   final bool obscureText;
+  final String? Function(String?)? validator;
   final TextEditingController? controller;
   const AppAuthTextField({
     super.key,
@@ -14,6 +15,7 @@ class AppAuthTextField extends StatefulWidget {
     required this.icon,
     this.obscureText = false,
     this.controller,
+    this.validator,
   });
 
   @override
@@ -41,11 +43,12 @@ class _AppAuthTextFieldState extends State<AppAuthTextField> {
       () => TextFormField(
         focusNode: focusNode,
         controller: widget.controller,
+        validator: widget.validator,
+        obscureText: hideValue.value,
         style: const TextStyle(
           color: AppTheme.bodyColor,
           fontWeight: FontWeight.w500,
         ),
-        obscureText: hideValue.value,
         decoration: InputDecoration(
           isDense: true,
           border: UnderlineInputBorder(
@@ -79,6 +82,7 @@ class _AppAuthTextFieldState extends State<AppAuthTextField> {
           ],
         ),
       );
+
   Widget suffixIcon() => IconButton(
         onPressed: () => hideValue.value = !hideValue.value,
         icon: Obx(
